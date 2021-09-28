@@ -5,10 +5,10 @@
 #
 
 cat >$NETIP <<-EOF
-uci set network.lan.ipaddr='192.168.2.2'                                   # IPv4 地址(openwrt后台地址)
+uci set network.lan.ipaddr='10.10.0.2'                                   # IPv4 地址(openwrt后台地址)
 uci set network.lan.netmask='255.255.255.0'                                 # IPv4 子网掩码
-uci set network.lan.gateway='192.168.2.1'                                  # IPv4 网关
-#uci set network.lan.broadcast='10.10.10.255'                                # IPv4 广播
+uci set network.lan.gateway='10.10.0.1'                                  # IPv4 网关
+#uci set network.lan.broadcast='10.10.0.255'                                # IPv4 广播
 #uci set network.lan.dns='10.10.10.253'                                      # DNS(多个DNS要用空格分开)
 uci set network.lan.delegate='0'                                            # 去掉LAN口使用内置的 IPv6 管理
 uci commit network                                                          # 不要删除跟注释,除非上面全部删除或注释掉了
@@ -23,8 +23,8 @@ EOF
 # 关闭IPv6 分配长度
 sed -i '/ip6assign/d' package/base-files/files/bin/config_generate
                                                 
-# 选择argon为默认主题
-sed -i 's/luci-theme-bootstrap/luci-theme-argon/g' feeds/luci/collections/luci/Makefile                    
+# 选择opentopd为默认主题
+sed -i 's/luci-theme-bootstrap/luci-theme-opentopd/g' feeds/luci/collections/luci/Makefile                    
 
 # 替换密码（要替换密码就不能设置密码为空）
 #sed -i 's/$1$V4UetPzk$CYXluq4wUazHjmCDBCqXF.:0/$1$PhflQnJ1$yamWfH5Mphs4hXV7UXWQ21:18725/g' $ZZZ          
